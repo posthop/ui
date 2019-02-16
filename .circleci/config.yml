@@ -32,7 +32,8 @@ jobs:
                 command: ./scripts/deploy.sh
 
 workflows:
-  workflow:
+  version: 2
+  build_only:
     jobs:
       - build:
           deploy: false
@@ -40,6 +41,8 @@ workflows:
             branches:
               ignore: master
 
+  build_and_deploy:
+    jobs:
       - build:
           deploy: true
           filters:
