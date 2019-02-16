@@ -1,6 +1,10 @@
 version: 2
 jobs:
   build:
+    parameters:
+      deploy:
+        type: boolean
+        default: false
     docker:
       - image: circleci/node:8.11
 
@@ -8,7 +12,6 @@ jobs:
 
     steps:
       - checkout
-
 
       - run:
           name: Downloading npm dependencies
@@ -18,10 +21,27 @@ jobs:
           name: Building production static files
           command: npm run build
 
-      - run:
-          name: Install rsync
-          command: sudo apt-get install -y rsync
+      - when:
+          condition: << parameters.deploy >>
+          steps:
+            - run:
+                name: Install rsync
+                command: sudo apt-get install -y rsync
+            - run:
+                name: Deploying to server
+                command: ./scripts/deploy.sh
 
-      - run:
-          name: Deploying to server
-          command: ./scripts/deploy.sh
+workflows:
+  workflow:
+    jobs:
+      - build:
+          deploy: false
+          filters:
+            branches:
+              ignore: master
+
+      - build:
+          deploy: true
+          filters:
+            branches:
+              only: master
