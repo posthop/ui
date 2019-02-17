@@ -57,16 +57,11 @@
   display: block;
 
   position: relative;
-  top: 100px;
-
+  top: 0;
 
   &.shown {
-    height: 100%;
     opacity: 1;
-  }
-
-  &.stickled {;
-    top: 100px;
+    height: calc(100% - 200px);
   }
 }
 
