@@ -8,51 +8,58 @@ import { HeroService } from '../hero/hero.service';
   template: `../heroes/heroes.component.html`,
   styleUrls: ['../heroes/heroes.component.scss']
 })
-export class AppComponent {
-  title = 'posthop';
-}
 
-export class HeroesComponent implements OnInit{
+export class HeroesComponent implements OnInit {
   heroes: Hero[];
   selectedHero: Hero;
   addingHero = false;
   error: any;
   showNgFor = false;
-}
 
-constructor(private router: Router, private heroService: HeroService) {}
+  ngOnInit(): void {
+    this.getHeroes();
+  }
 
-addHero(): void {
-  this.addingHero = true;
-this.selectedHero = null;
-}
+  constructor(private router: Router, private heroService: HeroService) {
+  }
 
-close(savedHero: Hero): void {
-  this.addingHero = false;
-if (savedHero) {
-  this.getHeroes();
-}
-}
+  getHeroes(): void {
+    this.heroService
+        .getHeroes()
+        .subscribe(
+            heroes => (this.heroes = heroes),
+            error => (this.error = error)
+        )
+  }
 
-deleteHero(hero: Hero, event: any): void {
-  event.stopPropagation();
-this.heroService.delete(hero).subscribe(res => {
-  this.heroes = this.heroes.filter(h => h !== hero);
-  if (this.selectedHero === hero) {
+  addHero(): void {
+    this.addingHero = true;
     this.selectedHero = null;
   }
-}, error => (this.error = error));
-}
 
-ngOnInit(): void {
-  this.getHeroes();
-}
+  close(savedHero: Hero): void {
+    this.addingHero = false;
+    if (savedHero) {
+      this.getHeroes();
+    }
+  }
 
-onSelect(hero: Hero): void {
-  this.selectedHero = hero;
-this.addingHero = false;
-}
+  deleteHero(hero: Hero, event: any): void {
+    event.stopPropagation();
+    this.heroService.delete(hero).subscribe(res => {
+      this.heroes = this.heroes.filter(h => h !== hero);
+      if (this.selectedHero === hero) {
+        this.selectedHero = null;
+      }
+    }, error => (this.error = error));
+  }
 
-gotoDetail(): void {
-  this.router.navigate(['/detail', this.selectedHero.id]);
+  onSelect(hero: Hero): void {
+    this.selectedHero = hero;
+    this.addingHero = false;
+  }
+
+  gotoDetail(): void {
+    this.router.navigate(['/detail', this.selectedHero.id]);
+  }
 }

@@ -6,7 +6,7 @@ import { catchError } from 'rxjs/operators';
 import { Hero } from './hero';
 
 @Injectable()
-export class HeroSearchComponent {
+export class HeroSearchService {
   constructor(private http: HttpClient) {}
 
   search(term: string): Observable<Hero[]> {

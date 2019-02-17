@@ -1,58 +1,48 @@
-import { Component } from '@angular/core';
-import { Router } from '@angular/router';
-import { Hero } from '../hero/hero';
-import { HeroService } from '../hero/hero.service';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { ActivatedRoute, Params } from '@angular/router';
+import { Hero } from './hero';
+import { HeroService } from './hero.service';
 
 @Component({
-  selector: 'my-heroes',
-  template: `./heroes.component.html`,
-  styles: ['./heroes.component.css']
+  selector: 'my-hero-detail',
+  templateUrl: './hero-detail.component.html',
+  styleUrls: ['./hero-detail.component.scss']
 })
-export class AppComponent {
-  title = 'posthop';
-}
-
-export class HeroesComponent implements OnInit{
-  heroes: Hero[];
-  selectedHero: Hero;
-  addingHero = false;
+export class HeroDetailComponent implements OnInit {
+  @Input() hero: Hero;
+  @Output() close = new EventEmitter();
   error: any;
-  showNgFor = false;
-}
+  navigated = false; // true if navigated here
 
-constructor(private router: Router, private heroService: HeroService) {}
+  constructor(
+      private heroService: HeroService,
+      private route: ActivatedRoute
+  ) {}
 
-addHero(): void {
-  this.addingHero = true;
-this.selectedHero = null;
-}
-
-close(savedHero: Hero): void {
-  this.addingHero = false;
-if (savedHero) {
-  this.getHeroes();
-}
-}
-
-deleteHero(hero: Hero, event: any): void {
-  event.stopPropagation();
-this.heroService.delete(hero).subscribe(res => {
-  this.heroes = this.heroes.filter(h => h !== hero);
-  if (this.selectedHero === hero) {
-    this.selectedHero = null;
+  ngOnInit(): void {
+    this.route.params.forEach((params: Params) => {
+      if (params['id'] !== undefined) {
+        const id = +params['id'];
+        this.navigated = true;
+        this.heroService.getHero(id).subscribe(hero => (this.hero = hero));
+      } else {
+        this.navigated = false;
+        this.hero = new Hero();
+      }
+    });
   }
-}, error => (this.error = error));
-}
 
-ngOnInit(): void {
-  this.getHeroes();
-}
+  save(): void {
+    this.heroService.save(this.hero).subscribe(hero => {
+      this.hero = hero; // saved hero, w/ id if new
+      this.goBack(hero);
+    }, error => (this.error = error)); // TODO: Display error message
+  }
 
-onSelect(hero: Hero): void {
-  this.selectedHero = hero;
-this.addingHero = false;
-}
-
-gotoDetail(): void {
-  this.router.navigate(['/detail', this.selectedHero.id]);
+  goBack(savedHero: Hero = null): void {
+    this.close.emit(savedHero);
+    if (this.navigated) {
+      window.history.back();
+    }
+  }
 }
