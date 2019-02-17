@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, HostListener} from '@angular/core';
 import {NavigationEnd, Router} from "@angular/router";
 import {animate, query, style, transition, trigger} from "@angular/animations";
 
@@ -30,6 +30,7 @@ import {animate, query, style, transition, trigger} from "@angular/animations";
 })
 export class AppComponent {
   selected: string = null;
+  isSticky: boolean = false;
 
   constructor(
     router: Router
@@ -53,5 +54,11 @@ export class AppComponent {
       return false;
     }
     return this.selected !== button;
+  }
+
+  @HostListener('window:scroll', ['$event'])
+  checkScroll() {
+    console.log(window.pageYOffset);
+    this.isSticky = window.pageYOffset >= 100;
   }
 }
