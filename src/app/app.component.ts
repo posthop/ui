@@ -1,6 +1,8 @@
-import {Component, HostListener} from '@angular/core';
+import {Component, HostListener, OnInit} from '@angular/core';
 import {NavigationEnd, Router} from "@angular/router";
 import {animate, query, style, transition, trigger} from "@angular/animations";
+
+declare var device;
 
 @Component({
   selector: 'app-root',
@@ -28,7 +30,7 @@ import {animate, query, style, transition, trigger} from "@angular/animations";
     ])
   ]// register the animations
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   selected: string = null;
   isSticky: boolean = false;
 
@@ -60,5 +62,11 @@ export class AppComponent {
   checkScroll() {
     console.log(window.pageYOffset);
     this.isSticky = window.pageYOffset >= 100;
+  }
+
+  ngOnInit() {
+    document.addEventListener("deviceready", function () {
+      alert(device.platform);
+    }, false);
   }
 }
