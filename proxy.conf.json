@@ -1,0 +1,6 @@
+{
+  "/api": {
+    "target": "https://posthop.momoperes.ca/",
+    "secure": false
+  }
+}

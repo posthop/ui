@@ -9,28 +9,28 @@ declare var device;
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
   animations: [
-    trigger('myAnimation', [
-      transition('* => *', [
-        query(
-          ':enter',
-          [style({opacity: 0})],
-          {optional: true}
-        ),
-        query(
-          ':leave',
-          [style({opacity: 1}), animate('0.3s', style({opacity: 0}))],
-          {optional: true}
-        ),
-        query(
-          ':enter',
-          [style({opacity: 0}), animate('0.3s', style({opacity: 1}))],
-          {optional: true}
-        )
-      ])
-    ])
+    // trigger('myAnimation', [
+    //   transition('* => *', [
+    //     query(
+    //       ':enter',
+    //       [style({opacity: 0})],
+    //       {optional: true}
+    //     ),
+    //     query(
+    //       ':leave',
+    //       [style({opacity: 1}), animate('0.3s', style({opacity: 0}))],
+    //       {optional: true}
+    //     ),
+    //     query(
+    //       ':enter',
+    //       [style({opacity: 0}), animate('0.3s', style({opacity: 1}))],
+    //       {optional: true}
+    //     )
+    //   ])
+    // ])
   ]// register the animations
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
   selected: string = null;
   isSticky: boolean = false;
 
@@ -62,12 +62,6 @@ export class AppComponent implements OnInit {
   checkScroll() {
     console.log(window.pageYOffset);
     this.isSticky = window.pageYOffset >= 100;
-  }
-
-  ngOnInit() {
-    document.addEventListener("deviceready", function () {
-      alert(device.platform);
-    }, false);
   }
 
   processClick(button: string) {

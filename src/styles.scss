@@ -13,3 +13,7 @@ app-root {
   flex-direction: column;
   flex-grow: 1;
 }
+
+.mat-progress-spinner circle, .mat-spinner circle {
+  stroke: #439945;
+}

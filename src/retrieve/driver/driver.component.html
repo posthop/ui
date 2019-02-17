@@ -1,0 +1,22 @@
+<div class="root" *ngIf="!driver">
+  <p>
+    Finding the perfect courier...
+  </p>
+  <mat-spinner [diameter]="50"></mat-spinner>
+</div>
+
+<div *ngIf="driver" class="found">
+  <p class="big">Your courier is on the way!</p>
+  <div class="card">
+    <img class="avatar" [src]="driver.picture">
+    <p class="name">{{driver.full_name}}</p>
+    <p class="stars">{{driver.rating}} stars</p>
+
+    <p>{{driver.car_model}} <img src="assets/leaf.png" class="leaf" *ngIf="driver.electric_car"></p>
+
+    <div class="phone">
+      <p>{{driver.phone_number}}</p>
+      <a mat-button color="primary" href="tel:+1-{{driver.phone_number}}">Call</a>
+    </div>
+  </div>
+</div>
