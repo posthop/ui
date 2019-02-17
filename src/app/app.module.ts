@@ -12,6 +12,7 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {MaterialModule} from "./material.module";
 import {QrInputComponent} from "../retrieve/input/qr/qr.component";
 import {TrackingInputComponent} from "../retrieve/input/tracking/tracking.component";
+import {DriverComponent} from "../retrieve/driver/driver.component";
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import {TrackingInputComponent} from "../retrieve/input/tracking/tracking.compon
     ShipComponent,
 
     QrInputComponent,
-    TrackingInputComponent
+    TrackingInputComponent,
+    DriverComponent
   ],
   imports: [
     BrowserModule,
