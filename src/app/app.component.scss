@@ -4,12 +4,14 @@
   justify-content: center;
   margin: 10px 0;
   height: 80px;
+  min-height: 80px;
 }
 
 .buttons {
   flex-grow: 1;
   display: flex;
   flex-direction: column;
+  z-index: 2;
 }
 
 .big-button {
@@ -51,20 +53,25 @@
   transition: height 800ms ease-out 100ms, opacity 1000ms ease-in;
   opacity: 0;
   height: 0;
+  z-index: 1;
+  display: block;
+
+  position: relative;
+  top: 100px;
+
 
   &.shown {
     height: 100%;
     opacity: 1;
   }
 
-  &.stickled {
-    margin-top: 100px;
+  &.stickled {;
+    top: 100px;
   }
 }
 
 .sticky {
   position: fixed;
-  transition: 0;
   top: 0;
   height: 100px;
 }
