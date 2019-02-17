@@ -3,21 +3,18 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HeroesComponent }      from '../heroes/heroes.component';
-import { HeroService } from '../hero/hero.service';
-import { HeroDetailComponent } from '../hero/hero-detail.component';
-import { HeroSearchComponent } from '../hero/hero-search.component';
 import { DashboardComponent } from '../dashboard/dashboard.component';
+import { ShipComponent} from "../ship/ship.component";
 import {FormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
+import {RetrieveComponent} from "../retrieve/retrieve.component";
 
 @NgModule({
   declarations: [
     AppComponent,
-    HeroesComponent,
+    RetrieveComponent,
     DashboardComponent,
-    HeroSearchComponent,
-    HeroDetailComponent,
+    ShipComponent,
   ],
   imports: [
     BrowserModule,
@@ -25,7 +22,7 @@ import {HttpClientModule} from "@angular/common/http";
     AppRoutingModule,
     HttpClientModule,
   ],
-  providers: [HeroService],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule {
