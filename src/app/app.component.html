@@ -5,13 +5,15 @@
 <div class="buttons">
   <button mat-button class="big-button" [class.collapsed]="isCollapsed('ship')" (click)="selected = 'ship'"
           routerLink="/ship"
+          [class.sticky]="isSticky"
           [class.titled]="!isCollapsed('ship') && selected">Ship
   </button>
   <button mat-button class="big-button" [class.collapsed]="isCollapsed('retrieve')" (click)="selected = 'retrieve'"
           routerLink="/retrieve"
-          [class.titled]="!isCollapsed('retrieved') && selected">Retrieve
+          [class.sticky]="isSticky"
+          [class.titled]="!isCollapsed('retrieve') && selected">Retrieve
   </button>
 </div>
-<div [class.shown]="selected" class="outlet" [@myAnimation]="o.isActivated ? o.activatedRoute : ''">
+<div [class.shown]="selected" [class.stickled]="isSticky" class="outlet" [@myAnimation]="o.isActivated ? o.activatedRoute : ''">
   <router-outlet  #o="outlet"></router-outlet>
 </div>
