@@ -1,0 +1,17 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div class="logo">
+  <img src="assets/posthop_full.svg">
+</div>
+<div class="buttons">
+  <button mat-button class="big-button" [class.collapsed]="isCollapsed('ship')" (click)="selected = 'ship'"
+          routerLink="/ship"
+          [class.titled]="!isCollapsed('ship') && selected">Ship
+  </button>
+  <button mat-button class="big-button" [class.collapsed]="isCollapsed('retrieve')" (click)="selected = 'retrieve'"
+          routerLink="/retrieve"
+          [class.titled]="!isCollapsed('retrieved') && selected">Retrieve
+  </button>
+</div>
+<div [class.shown]="selected" class="outlet">
+  <router-outlet></router-outlet>
+</div>
