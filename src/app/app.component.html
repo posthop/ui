@@ -12,6 +12,6 @@
           [class.titled]="!isCollapsed('retrieved') && selected">Retrieve
   </button>
 </div>
-<div [class.shown]="selected" class="outlet">
-  <router-outlet></router-outlet>
+<div [class.shown]="selected" class="outlet" [@myAnimation]="o.isActivated ? o.activatedRoute : ''">
+  <router-outlet  #o="outlet"></router-outlet>
 </div>
