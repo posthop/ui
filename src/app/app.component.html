@@ -3,12 +3,12 @@
   <img src="assets/posthop_full.svg">
 </div>
 <div class="buttons">
-  <button mat-button class="big-button" [class.collapsed]="isCollapsed('ship')" (click)="selected = 'ship'"
+  <button mat-button class="big-button" [class.collapsed]="isCollapsed('ship')" (click)="processClick('ship')"
           routerLink="/ship"
           [class.sticky]="isSticky"
           [class.titled]="!isCollapsed('ship') && selected">Ship
   </button>
-  <button mat-button class="big-button" [class.collapsed]="isCollapsed('retrieve')" (click)="selected = 'retrieve'"
+  <button mat-button class="big-button" [class.collapsed]="isCollapsed('retrieve')" (click)="processClick('retrieve')"
           routerLink="/retrieve"
           [class.sticky]="isSticky"
           [class.titled]="!isCollapsed('retrieve') && selected">Retrieve

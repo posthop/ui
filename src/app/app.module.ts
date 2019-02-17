@@ -10,6 +10,8 @@ import {HttpClientModule} from "@angular/common/http";
 import {RetrieveComponent} from "../retrieve/retrieve.component";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {MaterialModule} from "./material.module";
+import {QrInputComponent} from "../retrieve/input/qr/qr.component";
+import {TrackingInputComponent} from "../retrieve/input/tracking/tracking.component";
 
 @NgModule({
   declarations: [
@@ -17,6 +19,9 @@ import {MaterialModule} from "./material.module";
     RetrieveComponent,
     DashboardComponent,
     ShipComponent,
+
+    QrInputComponent,
+    TrackingInputComponent
   ],
   imports: [
     BrowserModule,

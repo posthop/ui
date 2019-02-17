@@ -7,7 +7,12 @@
     <li>a Canada Post-issued delivery notice with QR code.</li>
   </ul>
   <div class="options">
-    <button mat-button color="primary">Tracking Number</button>
-    <button mat-button color="primary">QR Code</button>
+    <button mat-button [color]="inputType == 'tracking' ? 'primary' : ''" (click)="inputType = 'tracking'">Tracking Number</button>
+    <button mat-button [color]="inputType == 'qr' ? 'primary' : ''" (click)="inputType = 'qr'">QR Code</button>
+  </div>
+
+  <div *ngIf="inputType" class="input-section">
+    <input-qr *ngIf="inputType == 'qr'"></input-qr>
+    <input-tracking *ngIf="inputType == 'tracking'"></input-tracking>
   </div>
 </div>
