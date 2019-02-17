@@ -8,6 +8,7 @@ import { ShipComponent} from "../ship/ship.component";
 import {FormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
 import {RetrieveComponent} from "../retrieve/retrieve.component";
+import {CourierComponent} from "../courier/courier.component";
 
 @NgModule({
   declarations: [
@@ -15,6 +16,7 @@ import {RetrieveComponent} from "../retrieve/retrieve.component";
     RetrieveComponent,
     DashboardComponent,
     ShipComponent,
+    CourierComponent,
   ],
   imports: [
     BrowserModule,
