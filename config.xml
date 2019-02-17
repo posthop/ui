@@ -24,6 +24,6 @@
         <allow-intent href="itms-apps:*" />
     </platform>
     <plugin name="cordova-plugin-device" spec="^2.0.2" />
+    <icon density="xhdpi" height="96" platform="android" src="res/icon/android/icon-96-xhdpi.png" width="96" />
     <engine name="android" spec="^7.1.4" />
 </widget>
-
