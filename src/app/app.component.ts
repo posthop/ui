@@ -69,4 +69,12 @@ export class AppComponent implements OnInit {
       alert(device.platform);
     }, false);
   }
+
+  processClick(button: string) {
+    if (!this.selected) {
+      this.selected = button;
+    } else {
+      this.selected = null;
+    }
+  }
 }

@@ -1,17 +1,12 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import {Component} from '@angular/core';
 
 @Component({
   selector: 'my-retrieve',
   templateUrl: '../retrieve/retrieve.component.html',
   styleUrls: ['../retrieve/retrieve.component.scss']
 })
-export class RetrieveComponent implements OnInit {
+export class RetrieveComponent {
 
-  constructor(
-      private router: Router,) {
-  }
+  inputType: string = null;
 
-  ngOnInit(): void {
-  }
 }
